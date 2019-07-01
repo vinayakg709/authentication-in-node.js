@@ -1,0 +1,25 @@
+{
+  "name": "authentication-in-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinayakg709/authentication-in-node.js.git"
+  },
+  "author": "vinayak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinayakg709/authentication-in-node.js/issues"
+  },
+  "homepage": "https://github.com/vinayakg709/authentication-in-node.js#readme"
+}
