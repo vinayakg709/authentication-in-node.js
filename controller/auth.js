@@ -2,6 +2,14 @@ const { validationResult } = require('express-validator')
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const sendgridTransporter = require('nodemailer-sendgrid-transport');
+
+const transporter = nodemailer.createTransport(sendgridTransporter({
+    auth : {
+        api_key: "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"
+    }
+}))
 
 exports.signup = (req,res,next) => {
     const errors = validationResult(req);
@@ -26,6 +34,12 @@ exports.signup = (req,res,next) => {
     .then(result => {
         res.status(201).json({ message: 'User Created', userId: result._id});
         console.log("201");
+        return transporter.sendMail({
+            to: email,
+            from: 'vinayakg709@gmail.com',
+            subject: 'signed up',
+            html : '<h1>brooooooo... you are signed up </h1>'
+        });
     })
     .catch(err => {
         if(!err.statusCode){
@@ -64,7 +78,8 @@ exports.login = (req,res,next) => {
         'secret',
         {expiresIn: '1h'}
     );
-    res.status(200).json({message: 'loggedin', token : token, userId: loadedUser._id.toString()  })
+    res.status(200).json({message: 'loggedin', token : token, userId: loadedUser._id.toString()  });
+    console.log(200);
     })
     .catch(err => {
         if(!err.statusCode){
@@ -72,4 +87,8 @@ exports.login = (req,res,next) => {
         }
         next(err);
     })
+};
+
+exports.posts = (req,res,next) => {
+    res.send('<h1> hello </h1>');
 }
