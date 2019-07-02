@@ -90,5 +90,5 @@ exports.login = (req,res,next) => {
 };
 
 exports.posts = (req,res,next) => {
-    res.send('<h1> hello </h1>');
+    res.send('hello');
 }

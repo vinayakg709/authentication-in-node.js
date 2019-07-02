@@ -2,7 +2,8 @@ const express = require('express');
 const { body } = require('express-validator')
 const user = require('../models/user');
 const authController = require('../controller/auth');
-const isAuth = require('../middleware/is-auth')
+const isAuth = require('../middleware/is-auth');
+const passport = require('passport');
 
 const router = express.Router();
 
@@ -31,6 +32,14 @@ router.post('/signup',[
 router.post('/login',authController.login);
 
 router.get('/posts',isAuth, authController.posts);
+
+router.get('/google',passport.authenticate('google',{
+    scope: ['profile']
+}))
+
+router.get('/google/redirect',passport.authenticate('google'), (req,res,next) => {
+    res.send('you reached the calll back url');
+})
 
 
 
