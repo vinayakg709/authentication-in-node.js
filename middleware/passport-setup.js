@@ -1,6 +1,7 @@
 const  passport = require('passport');
 const googleStrategy = require('passport-google-oauth20');
-const key = require('../middleware/key')
+const key = require('../middleware/key');
+const Guser = require('../models/guser');
 
 passport.use(
     new googleStrategy({
@@ -11,5 +12,6 @@ passport.use(
     (accessToken,refreshToken,profile,done) => {
         console.log('callback function is fired');
         console.log(profile);
+        
     })
 )
