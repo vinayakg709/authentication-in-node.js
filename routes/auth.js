@@ -38,7 +38,7 @@ router.get('/google',passport.authenticate('google',{
 }))
 
 router.get('/google/redirect',passport.authenticate('google'), (req,res,next) => {
-    res.send('you reached the calll back url');
+    res.send(req.user);
 })
 
 
